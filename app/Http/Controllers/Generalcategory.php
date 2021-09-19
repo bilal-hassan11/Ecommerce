@@ -16,7 +16,7 @@ class Generalcategory extends Controller
         
         $data = array(
             'title' => 'Add Companies Category',
-            'CompaniesCategory' => Category::where('type','=','general')->get(),
+            'CompaniesCategory' => Category::where('type','=','general')->where('deleted_at',Null)->get(),
         );
         //Categry data for update
         // if(isset($request['category_id'])){
@@ -29,29 +29,43 @@ class Generalcategory extends Controller
     }
 
     public function save(Request $request){
-        
+        dd($request->all());
         $validator = Validator::make($request->all(), [
-            'category_name' => 'required|min:5',
-            'logo' => 'required',
+            'name' => 'required|min:5',
+            'logo' => 'required'
         ]);
         
         if($validator->fails()) {
-            session()->flash("error", "You have to provide current Fields!");
+            session()->flash("error", "You Have To Provide Current Fields!");
             return back();
         }
         
+        if(Category::where('name',$request->name)->exists() && Category::where('deleted_at',Null)){            
+            
+            session()->flash("error", "Category Already Exist!");
+            return back();
+        } 
+
         $imageName = time().'.'.$request->logo->extension();       
         $request->logo->move(public_path('uploads\physical_category'), $imageName);
   
         $data = $request->all();
         $category = new Category;
         
-        $category->name = $data['category_name'];
+        $category->name = $data['name'];
         $category->image = $imageName;
         $category->type = $data['category_type'];
         
         $category->save();
         session()->flash("success", "Category Added Successfully!");
+        
+        return back(); 
+    }
+
+    public function delete(Request $request)
+    {   
+       //dd($request->all());
+        Category::find($request->id)->where('type','=',$request->type)->delete();
         
         return back(); 
     }

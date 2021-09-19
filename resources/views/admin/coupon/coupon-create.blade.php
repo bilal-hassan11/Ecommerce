@@ -1,14 +1,6 @@
 @extends('layouts.admin')
-<style>
-.mt-100 {
-    margin-top: 100px
-}
 
 
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 
 @section('content')
             <!-- Container-fluid starts-->
@@ -59,7 +51,7 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label  class="col-xl-3 col-md-4"><span>*</span>Coupan Code</label>
-                                                        <input style="height: 35px; font-size:15px;" value="{{ $coupon_code }}" class="form-control col-md-7" name="coupon_code" type="text"  >
+                                                        <input style="height: 35px; font-size:15px;"  value="{{ $coupon_code }}" readonly class="form-control col-md-7 " name="coupon_code" type="text"  >
                                                         <div class="valid-feedback">Please Provide a Valid Coupon Code.</div>
                                                     </div>
                                                     <div class="form-group row">
@@ -72,18 +64,18 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-md-4">Free Shipping</label>
-                                                        <div class="checkbox checkbox-primary col-md-7">
-                                                            <input value="enable" type="checkbox" data-original-title="" name="shipping" title="">
+                                                        <div class="checkbox-primary col-md-7">
+                                                            <input  type="checkbox"  value="allow" name="shipping" checked>
                                                             <label >Allow Free Shipping</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-xl-3 col-md-4">Quantity</label>
-                                                        <input style="height: 35px; font-size:15px;"class="form-control col-md-7" name="quantity" type="number" >
+                                                        <label class="col-xl-3 col-md-4"> Discount Quantity</label>
+                                                        <input style="height: 35px; font-size:15px;"class="form-control col-md-7" value="1" name="discount_quantity" type="number" >
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-md-4">Discount Type</label>
-                                                        <select style="height: 35px; font-size:15px;" class="custom-select col-md-7" name="discount_type" >
+                                                        <select style="height: 35px; font-size:15px;" class="custom-select col-md-7"  name="discount_type" >
                                                             <option value="">--Select--</option>
                                                             <option value="percent">Percent</option>
                                                             <option value="fixed">Fixed</option>
@@ -91,8 +83,8 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-md-4">Status</label>
-                                                        <div class="checkbox checkbox-primary col-md-7">
-                                                            <input  type="checkbox"  value="enable" name="status" data-original-title="" title="">
+                                                        <div class="checkbox-primary col-md-7">
+                                                            <input  type="checkbox"  value="enable" name="status" checked>
                                                             <label >Enable the Coupon</label>
                                                         </div>
                                                     </div>
@@ -118,12 +110,12 @@
                                                 
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-xl-3 col-md-4">Minimum Spend</label>
-                                                <input style="height: 35px; font-size:15px;" class="form-control col-md-7" name="minimum_spend"  type="number" >
+                                                <label class="col-xl-3 col-md-4">Minimum Order</label>
+                                                <input style=" maegin-right:-420px height:35px; font-size:15px;" class="form-control col-md-7 humandatepicker" name="minimum_order"  type="number" >
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-xl-3 col-md-4">Maximum Spend</label>
-                                                <input style="height: 35px; font-size:15px;" class="form-control col-md-7" name="maximum_spend" type="number" >
+                                                <label class="col-xl-3 col-md-4">Maximum Order</label>
+                                                <input style="height: 35px; font-size:15px;" class="form-control col-md-7" name="maximum_order" type="number" >
                                             </div>
                                         
                                     </div>
@@ -158,13 +150,12 @@
 </div>
 
 @endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script type=text/javascript>
+
+
+<!-- <script type=text/javascript>
     $(document).on('change','#parent_category',function(){
         var category_name = $('#parent_category').val();
-        // alert(category_type);
+       
         $.ajax({
             url : "{{ url('getcategories') }}/"+category_name,
             type : "get",
@@ -175,49 +166,7 @@
         });
     });
 
-$(function(){
 
-@if(Session::has('success'))
-    Swal.fire({
-    icon: 'success',
-    title: 'Great!',
-    text: '{{ Session::get("success") }}'
-})
-@endif
-});
-
-$(function(){
-
-@if(Session::has('info'))
-Swal.fire({
-    icon: 'info',
-    title: 'Oops...',
-    text: '{{ Session::get("info") }}'
-})
-@endif
-});
-
-$(function(){
-
-@if(Session::has('warning'))
-Swal.fire({
-    icon: 'warning',
-    title: 'Oops...',
-    text: '{{ Session::get("warning") }}'
-})
-@endif
-});
-
-$(function(){
-
-@if(Session::has('error'))
-Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: '{{ Session::get("error") }}'
-})
-@endif
-});
 //     $(document).on('change','#category',function(){
 //         var category_ = $('#parent_category').val();
 //         // alert(category_type);
@@ -281,7 +230,7 @@ Swal.fire({
 //   }
     
 //   });
-</script>
+</script> -->
 
 
 

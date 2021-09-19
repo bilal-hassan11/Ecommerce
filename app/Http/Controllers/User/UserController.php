@@ -52,19 +52,27 @@ class UserController extends Controller
            'email'=>'required|email|exists:users,email',
            'password'=>'required|min:5|max:30'
         ],[
-            'email.exists'=>'This email is not exists on users table'
+            'email.exists'=>'This email is not exists !'
         ]);
 
         $creds = $request->only('email','password');
+
         if( Auth::guard('web')->attempt($creds) ){
+            
+            User::where('email','=',$request->email)->update(array('activation_time' => date("Y-m-d H:i:s"),'activation_status' => "online"));
+            
             return redirect()->route('user.home');
         }else{
             return redirect()->route('user.login')->with('fail','Incorrect credentials');
         }
     }
 
-    function logout(){
+    function logout(Request $request){
+       
+        User::where('id','=',$request->id)->update(array('activation_time' => date("Y-m-d H:i:s"),'activation_status' => "offline"));
+        
         Auth::guard('web')->logout();
+            
         return redirect('/');
     }
 }

@@ -19,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 <!-- Font Awesome-->
-<link rel="stylesheet" type="text/css" href="{{ asset('admin_assets') }}/css/fontawesome.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- Flag icon-->
 <link rel="stylesheet" type="text/css" href=" {{ asset('admin_assets') }}/css/themify.css">
@@ -28,8 +28,8 @@
 <link rel="stylesheet" type="text/css" href=" {{ asset('admin_assets') }}/css/slick.css">
 <link rel="stylesheet" type="text/css" href=" {{ asset('admin_assets') }}/css/slick-theme.css">
 
-<!-- jsgrid css-->
-<link rel="stylesheet" type="text/css" href=" {{ asset('admin_assets') }}/css/jsgrid.css">
+<!-- jsgrid css
+<link rel="stylesheet" type="text/css" href=" {{ asset('admin_assets') }}/css/jsgrid.css"> -->
 
 <!-- Bootstrap css-->
 <link rel="stylesheet" type="text/css" href=" {{ asset('admin_assets') }}/css/bootstrap.css">
@@ -212,33 +212,33 @@ c1.923,0,3.84-0.728,5.303-2.192l-83.142-83.142L393.695,417.909z"/>
 </div>
 
 <!-- latest jquery-->
-<script src=" {{ asset('admin_assets') }}/js/jquery-3.3.1.min.js"></script>
+    <script src=" {{ asset('admin_assets') }}/js/jquery-3.3.1.min.js"></script>
 
-<!-- Bootstrap js-->
+<!-- Bootstrap js
 <script src="{{ asset('admin_assets') }}/js/popper.min.js"></script>
-<script src=" {{ asset('admin_assets') }}/js/bootstrap.js"></script>
+<script src=" {{ asset('admin_assets') }}/js/bootstrap.js"></script> -->
 
-<!-- feather icon js-->
+<!-- feather icon js
 <script src=" {{ asset('admin_assets') }}/js/icons/feather-icon/feather.min.js"></script>
-<script src=" {{ asset('admin_assets') }}/js/icons/feather-icon/feather-icon.js"></script>
+<script src=" {{ asset('admin_assets') }}/js/icons/feather-icon/feather-icon.js"></script> -->
 
 <!-- Sidebar jquery-->
-<script src=" {{ asset('admin_assets') }}/js/sidebar-menu.js"></script>
+<!-- <script src=" {{ asset('admin_assets') }}/js/sidebar-menu.js"></script> -->
 <script src=" {{ asset('admin_assets') }}/js/slick.js"></script>
 
-<!-- Jsgrid js-->
+<!-- Jsgrid js
 <script src=" {{ asset('admin_assets') }}/js/jsgrid/jsgrid.min.js"></script>
 <script src=" {{ asset('admin_assets') }}/js/jsgrid/griddata-invoice.js"></script>
-<script src=" {{ asset('admin_assets') }}/js/jsgrid/jsgrid-invoice.js"></script>
+<script src=" {{ asset('admin_assets') }}/js/jsgrid/jsgrid-invoice.js"></script> -->
 
-<!-- lazyload js-->
-<script src=" {{ asset('admin_assets') }}/js/lazysizes.min.js"></script>
+<!-- lazyload js
+<script src=" {{ asset('admin_assets') }}/js/lazysizes.min.js"></script> -->
 
-<!--right sidebar js-->
-<script src=" {{ asset('admin_assets') }}/js/chat-menu.js"></script>
+<!-- right sidebar js
+<script src=" {{ asset('admin_assets') }}/js/chat-menu.js"></script> -->
 
 <!--script admin-->
-<script src=" {{ asset('admin_assets') }}/js/admin-script.js"></script>
+<!-- <script src=" {{ asset('admin_assets') }}/js/admin-script.js"></script> -->
 <script>
 $('.single-item').slick({
     arrows: false,

@@ -100,19 +100,19 @@ class EmployeeController extends Controller
            'email'=>'required|email|exists:users,email',
            'password'=>'required|min:5|max:30'
         ],[
-            'email.exists'=>'This email is not exists on users table'
+            'email.exists'=>'This email is not exists !'
         ]);
 
         $creds = $request->only('email','password');
         if( Auth::guard('web')->attempt($creds) ){
             return redirect()->route('user.home');
         }else{
-            return redirect()->route('user.login')->with('fail','Incorrect credentials');
+            return redirect()->route('user.login')->with('fail','This credentials doesnot Match to Our Records!');
         }
     }
 
     function logout(){
-        Auth::guard('web')->logout();
+        Auth::guard('Company')->logout();
         return redirect('/');
     }
 

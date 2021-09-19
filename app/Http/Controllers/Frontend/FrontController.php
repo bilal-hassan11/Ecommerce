@@ -94,7 +94,7 @@ class FrontController extends Controller
             'menu' => 'about'
         );
 
-        return view('front.about')->with($data);
+        return view('front_pages.about_us')->with($data);
     }
 
     public function track(Request $request)
@@ -127,7 +127,7 @@ class FrontController extends Controller
             'menu' => 'contact'
         );
 
-        return view('front.contact')->with($data);
+        return view('front_pages.contact')->with($data);
     }
 
     public function save_contact(Request $request)
@@ -190,6 +190,245 @@ class FrontController extends Controller
         return view('front.privacy')->with($data);
     }
 
+    public function right_sidebar()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'home'
+        );
+
+        return view('front_pages.right_sidebar')->with($data);
+    }
+
+    public function left_sidebar()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'home'
+        );
+
+        return view('front_pages.left_sidebar')->with($data);
+    }
+
+    public function clothes()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'home'
+        );
+
+        return view('front_pages.collection')->with($data);
+    }
+
+    public function watches()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'home'
+        );
+
+        return view('front_pages.watch')->with($data);
+    }
+
+    public function electronics()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'home'
+        );
+
+        return view('front_pages.electronic')->with($data);
+    }
+
+    public function nursery()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'nursery'
+        );
+
+        return view('front_pages.nursery')->with($data);
+    }
+
+    public function bags()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'bags'
+        );
+
+        return view('front_pages.bags')->with($data);
+    }
+
+    public function shoes()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'bags'
+        );
+
+        return view('front_pages.shoes')->with($data);
+    }
+
+    public function flower()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Flower'
+        );
+
+        return view('front_pages.flower')->with($data);
+    }
+
+    public function vegetable()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Vegetable'
+        );
+
+        return view('front_pages.vegetables')->with($data);
+    }
+
+    public function beauty()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Beauty'
+        );
+
+        return view('front_pages.beauty')->with($data);
+    }
+
+    public function light()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Light'
+        );
+
+        return view('front_pages.light')->with($data);
+    }
+
+    public function furniture()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Furniture'
+        );
+
+        return view('front_pages.furniture')->with($data);
+    }
+
+    public function goggle()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Goggle'
+        );
+
+        return view('front_pages.goggles')->with($data);
+    }
+
+    public function book()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Books'
+        );
+
+        return view('front_pages.lookbook')->with($data);
+    }
+
+    public function instagram()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Instagram'
+        );
+
+        return view('front_pages.instagram-shop')->with($data);
+    }
+
+    public function video()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Instagram'
+        );
+
+        return view('front_pages.video')->with($data);
+    }
+
+    public function parallax()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => ''
+        );
+
+        return view('front_pages.parallax')->with($data);
+    }
+
+    public function fullpage()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => 'Fullpage'
+        );
+
+        return view('front_pages.full-page')->with($data);
+    }
+
+    public function search()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => ''
+        );
+
+        return view('front_pages.parallax')->with($data);
+    }
+
+    public function wishlist()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => ''
+        );
+
+        return view('front_pages.wishlist')->with($data);
+    }
+
+    public function review()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => ''
+        );
+
+        return view('front_pages.parallax')->with($data);
+    }
+
+    public function typography()
+    {
+        $data = array(
+            'title' => '',
+            'menu' => ''
+        );
+
+        return view('front_pages.parallax')->with($data);
+    }
+    
+    public function comingsoon(){
+
+        return view('front_pages.coming-soon');
+    }
+
+    public function ordersuccess(){
+
+        return view('front_pages.order-success');
+    }
     public function logout(){
         Auth::guard('web')->logout();
         return redirect('/');

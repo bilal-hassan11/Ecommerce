@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\User;
 use App\Models\Companies;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,7 @@ class CompanyController extends Controller
         $data = array(
             'title' => 'All Companies',
             'CompaniesCategory' => Category::where('type','=','general')->get(),
+            'users_data' => User::get(),
             'companies' => User::get(),
         );
        

@@ -42,13 +42,7 @@
 	    overflow-x: scroll;
 	}
 </style>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
+
 
 @section('content')
             <!-- Container-fluid starts-->
@@ -93,32 +87,33 @@
                                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form  method="Post" action="{{ route('admin.Company.save') }}" enctype="multipart/form-data">
+                                                    <form  method="Post" action="{{ route('admin.Company.save') }}" class="ajaxForm" enctype="multipart/form-data">
                                                         @Csrf
                                                         <div class="form">
                                                             <div class="form-group">
                                                                 <label for="title">Title</label>
-                                                                <input type="text" class="form-control" placeholder="Enter Company Name"  name="name" value="">
+                                                                <input type="text" class="form-control" placeholder="Enter Company Name"  name="name" value="" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="logo">Logo</label>
-                                                                <input type="file" class="form-control" name="logo" value="">
+                                                                <input type="file" class="form-control" name="logo" value="" required>
                                                             </div>
                                                             <div class="form-group mb-0">
                                                                 <label for="email">Email</label>
-                                                                <input type="email" class="form-control" placeholder="Enter Email"  name="email" value="">
+                                                                <input type="email" class="form-control" placeholder="Enter Email"  name="email" value="" required>
                                                             </div>&nbsp
                                                             <div class="form-group mb-0 ">
                                                                 <label for="password">Password</label>
-                                                                <input type="password" class="form-control" placeholder="Enter Password"  name="password" value="">
+                                                                <input type="password" class="form-control" id="password" placeholder="Enter Password" onkeyup='check();' name="password" value="" required>
                                                             </div>
                                                             <div class="form-group mb-0 ">
                                                                 <label for="c_password">Confirm Password</label>
-                                                                <input type="password" class="form-control" placeholder="Enter Confirm Password"  name="c_password" value="">
+                                                                <input type="password" class="form-control" id="confirm_password" placeholder="Enter Confirm Password" onkeyup='check();'  name="c_password" value="" required>
                                                             </div>&nbsp
+                                                            <span id='message'></span>
                                                             <div class="form-group mb-0">
                                                                 <label for="contact_no">Contact No</label>
-                                                                <input type="number" class="form-control" placeholder="Enter Contact No"  name="contact_no" value="">
+                                                                <input type="text" class="form-control" placeholder="Enter Contact No" id="phone_number" name="contact_no" value="" required>
                                                             </div>&nbsp
                                                             <div class=form-group >
                                                                 <label class="col-form-label"><span>*</span> Categories:</label>
@@ -134,7 +129,7 @@
                                                                 <textarea class="ckeditor form-control" name="address"></textarea>
                                                             </div>
                                                             <div class=form-group >
-                                                                <input type="hidden" class="form-control" name="company_id" value="">
+                                                                <input type="hidden" class="form-control" name="company_id" value="" required>
                                                             </div>
                                                             <div class=form-group >
                                                                 <input type="hidden" class="form-control" name="type" value="show">
@@ -152,13 +147,15 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <div id="basicScenario" class="product-physical">
+                                    <div id="basicScenario" >
                                     <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Image</th>
                                                 <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Contact No</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -166,8 +163,10 @@
                                             @foreach($companies as $k => $company)
                                                 <tr>
                                                     <td>{{ $k + 1 }}</td>
-                                                    <td><img src="{{ asset('uploads') }}/company/{{ $company->image }}" style="width:60px;" alt=""></td>
+                                                    <td><img src="{{ asset('uploads') }}/company_logo/{{ $company->logo }}" style="width:60px;" alt=""></td>
                                                     <td>{{ $company->title }}</td>
+                                                    <td>{{ $company->email }}</td>
+                                                    <td>{{ $company->contact_no }}</td>
                                                     <td> <a href=""><button type="button" style="color:red; border-radius:19px; width:90px; margin-top:15px;" class="btn btn-outline-danger">Delete</button></a>
                                                         <a href=""><button type="button" style="color:yellow; border-radius:19px; width:90px; margin-top:15px;" class="btn btn-outline-info">Edit</button></a>
                                                     </td>
@@ -175,6 +174,7 @@
                                             @endforeach    
                                         </tbody>
                                     </table>
+                                    &nbsp<span>{{ $companies->links() }}</span>&nbsp
                                     </div>
                                 </div>
                             </div>
@@ -183,65 +183,7 @@
                 </div>
             </div>
             <!-- Container-fluid Ends-->
-
+        </div>
         </div>
 @endsection
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    }); 
 
-$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        responsive: true
-    } );
- 
-    new $.fn.dataTable.FixedHeader( table );
-} );
-
-$(function(){
-
-    @if(Session::has('success'))
-        Swal.fire({
-        icon: 'success',
-        title: 'Great!',
-        text: '{{ Session::get("success") }}'
-    })
-    @endif
-});
-
-$(function(){
-
-    @if(Session::has('info'))
-    Swal.fire({
-        icon: 'info',
-        title: 'Oops...',
-        text: '{{ Session::get("info") }}'
-    })
-    @endif
-});
-
-$(function(){
-
-    @if(Session::has('warning'))
-    Swal.fire({
-        icon: 'warning',
-        title: 'Oops...',
-        text: '{{ Session::get("warning") }}'
-    })
-    @endif
-});
-
-$(function(){
-
-@if(Session::has('error'))
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: '{{ Session::get("error") }}'
-    })
-    @endif
-});
-</script>

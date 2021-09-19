@@ -1,44 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from themes.pixelstrap.com/multikart/back-end/create-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Jan 2021 20:23:09 GMT -->
 <head>
 
+<style>
+    mpag{width: 100%;padding: 0px 0px 30px 0}
+        .mpag nav div span.relative.z-0.inline-flex.shadow-sm.rounded-md span span{margin-right:-4px;}
+        .mpag nav div span.relative.z-0.inline-flex.shadow-sm.rounded-md svg{width: 20px;}
+        .mpag nav div.flex.justify-between.flex-1{display: none;}
+        .mpag nav div.hidden div:first-child{float: left;}
+        .mpag nav div.hidden div:last-child{float: right;}
+        .mpag nav div span.px-4.py-2,
+        .mpag nav div a.px-4.py-2{padding-left: 20px !important;padding-right: 20px !important;}
+</style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Multikart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Multikart admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
     <link rel="icon" href="{{ asset('admin_assets') }}/images/dashboard/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('admin_assets') }}/images/dashboard/favicon.png" type="image/x-icon">
     <title>Multikart - Premium Admin Template</title>
+        
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
 
-    
+    <!-- multiselect -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.17/sweetalert2.min.css" rel="stylesheet" type="text/css">
+     
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+    
     <!-- Plugins css -->
     <link href="{{ asset('admin_assets') }}/css/bundled.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin_assets') }}/css/dianujStyles.css" rel="stylesheet" type="text/css" />
     <!--Pagination CSS-->
     <link rel="stylesheet" href="{{ asset('admin_assets') }}/css/pagination.css" rel="stylesheet" type="text/css">
-        
+    <!-- <link rel="stylesheet" href="{{ asset('admin_assets') }}/css/all.min.css">-->
 
-    <!-- Font Awesome
+    <!-- Font Awesome -->
         
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets') }}/css/fontawesome.css"> -->
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <!-- card css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets') }}/css/card.css">
-    <!-- Ico-font-->
+    
+    <!-- Ico-font -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets') }}/css/icofont.css">
 
     <!-- Flag icon-->
@@ -49,14 +67,7 @@
 
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets') }}/css/admin.css">
-    <style>
-    .select2-container .select2-selection--single .select2-selection__rendered {
-        line-height: 1.9;
-    }
-    .bootstrap-select .inner{
-        overflow-y: auto !important;
-    }
-</style>
+    
 </head>
 <body>
 
@@ -79,18 +90,22 @@
                     <li>
                         <form class="form-inline search-form">
                             <div class="form-group">
-                                <input class="form-control-plaintext" type="search" placeholder="Search.."><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                <input class="form-control-plaintext" type="search" placeholder="Search.."><span class="d-sm-none mobile-search"><i class="fas fa-search"></i></span>
                             </div>
                         </form>
                     </li>
                     <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize-2"></i></a></li>
                     <li class="onhover-dropdown"><a class="txt-dark" href="#">
+                        
+                    <!-- <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> {{ Config::get('languages')[App::getLocale()]['display'] }} -->
                         <h6>Welcome, {{ Auth::user()->name }}</h6></a>
+                        
                         <ul class="language-dropdown onhover-show-div p-20">
-                            <li><a href="#" data-lng="es"><i class="flag-icon flag-icon-is"></i> English</a></li>
-                            <li><a href="#" data-lng="sp"><i class="flag-icon flag-icon-um"></i> Spanish</a></li>
-                            <li><a href="#" data-lng="pt"><i class="flag-icon flag-icon-uy"></i> Portuguese</a></li>
-                            <li><a href="#" data-lng="fr"><i class="flag-icon flag-icon-nz"></i> French</a></li>
+                            
+                            <li><a href="" data-lng="es"><i class="flag-icon flag-icon-is"></i> English</a></li>
+                            <li><a href="" data-lng="sp"><i class="flag-icon flag-icon-um"></i> Spanish</a></li>
+                            <li><a href="" data-lng="pt"><i class="flag-icon flag-icon-uy"></i> Portuguese</a></li>
+                            <li><a href="" data-lng="fr"><i class="flag-icon flag-icon-nz"></i> French</a></li>
                         </ul>
                     </li>
                     <li class="onhover-dropdown"><i data-feather="bell"></i><span class="badge badge-pill badge-primary pull-right notification-badge">3</span><span class="dot"></span>
@@ -123,7 +138,7 @@
                             <li class="bg-light txt-dark"><a href="#">All</a> notification</li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('admin.contact.show') }}"><i class="right_side_toggle" data-feather="message-square"></i><span class="dot"></span></a></li>
+                    <li><a href="#"><i class="right_side_toggle" data-feather="message-square"></i><span class="dot"></span></a></li>
                     <li class="onhover-dropdown">
                         <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('uploads') }}/profile_pic/{{ Auth::user()->profile_pic }}" alt="header-user">
                             <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
@@ -133,8 +148,9 @@
                             <li><a href="#"><i data-feather="mail"></i>Inbox</a></li>
                             <li><a href="#"><i data-feather="lock"></i>Lock Screen</a></li>
                             <li><a href="#"><i data-feather="settings"></i>Settings</a></li>
-                            <li><a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i data-feather="log-out"></i>Logout</a>
-                                     <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form></li>
+                            <li><a  id="logout_user" data-id="{{Auth::user()->id}}"><i data-feather="log-out"></i>Logout</a>
+                            </li>
+                                
                         </ul>
                     </li>
                 </ul>
@@ -161,6 +177,7 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li><a class="sidebar-header" href="{{ route('admin.home') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
+                    
                     <li><a class="sidebar-header" href=""><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li>
@@ -168,11 +185,12 @@
                                     <span>Physical</span> <i class="fa fa-angle-right pull-right"></i>
                                 </a>
                                 <ul class="sidebar-submenu">
-                                    <li><a href="{{ route('admin.PhysicalCategory.add') }}" class="active"><i class="fa fa-circle"></i>Category</a></li>
-                                    <li><a href="{{ route('admin.SubPhysicalCategory.add') }}"><i class="fa fa-circle"></i>Sub Category</a></li>
-                                    <li><a href="{{ route('admin.product.show') }}"><i class="fa fa-circle"></i>Product List</a></li>
-                                    <li><a href="{{ route('admin.product.add') }}"><i class="fa fa-circle"></i>Add Product</a></li>
-                                </ul>
+                                        <li><a href="{{ route('admin.PhysicalCategory.add') }}" class="active"><i class="fa fa-circle"></i>Category</a></li>
+                                        <li><a href="{{ route('admin.SubPhysicalCategory.add') }}"><i class="fa fa-circle"></i>Sub Category</a></li>
+                                        <li><a href="{{ route('admin.product.show') }}"><i class="fa fa-circle"></i>Product List</a></li>
+                                        <li><a href="{{ route('admin.product.add') }}"><i class="fa fa-circle"></i>Add Product</a></li>
+
+                                    </ul>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-circle"></i>
@@ -187,6 +205,7 @@
                             </li>
                         </ul>
                     </li>
+                    
                     <li><a class="sidebar-header" href="{{ route('admin.company.add') }}"><i data-feather="dollar-sign"></i><span>Sales</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li><a href=""><i class="fa fa-circle"></i>Orders</a></li>
@@ -215,24 +234,31 @@
                             
                         </ul>
                     </li>
-                    
                     <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('admin.user.show') }}"><i class="fa fa-circle"></i>User List</a></li>
                             <li><a href="{{ route('admin.user.add') }}"><i class="fa fa-circle"></i>Create User</a></li>
                         </ul>
                     </li>
+                    <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Roles & Permission</span><i class="fa fa-angle-right pull-right"></i></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('admin.add.role') }}"><i class="fa fa-circle"></i>Roles List</a></li>
+                            <li><a href="{{ route('admin.add.permission') }}"><i class="fa fa-circle"></i>Permissions List</a></li>
+                            <li><a href="{{ route('admin.add.role_permission') }}"><i class="fa fa-circle"></i>Role To Permissions</a></li>
+                        </ul>
+                    </li>
+                   
                     <li><a class="sidebar-header" href=""><i data-feather="users"></i><span>Vendors</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('admin.vendor.show') }}"><i class="fa fa-circle"></i>Vendor List</a></li>
                             <li><a href="{{ route('admin.vendor.add') }}"><i class="fa fa-circle"></i>Create Vendor</a></li>
                         </ul>
                     </li>
-                        <ul class="sidebar-submenu">
-                            <li><a href=""><i class="fa fa-circle"></i>Translations</a></li>
-                            <li><a href=""><i class="fa fa-circle"></i>Currency Rates</a></li>
-                            <li><a href=""><i class="fa fa-circle"></i>Taxes</a></li>
-                        </ul>
+                    <ul class="sidebar-submenu">
+                        <li><a href=""><i class="fa fa-circle"></i>Translations</a></li>
+                        <li><a href=""><i class="fa fa-circle"></i>Currency Rates</a></li>
+                        <li><a href=""><i class="fa fa-circle"></i>Taxes</a></li>
+                    </ul>
                     </li>
                     <li><a class="sidebar-header" href="{{route('admin.report.show')}}"><i data-feather="bar-chart"></i><span>Reports</span></a></li>
                     <li><a class="sidebar-header" href="#"><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
@@ -267,55 +293,21 @@
                     <div class="chat-box">
                         <div class="people-list friend-list">
                             <ul class="list">
-                                <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('admin_assets') }}/images/dashboard/user.png" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Vincent Porter</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('admin_assets') }}/images/dashboard/user1.jpg" alt="">
-                                    <div class="status-circle away"></div>
-                                    <div class="about">
-                                        <div class="name">Ain Chavez</div>
-                                        <div class="status"> 28 minutes ago</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('admin_assets') }}/images/dashboard/user2.jpg" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Kori Thomas</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('admin_assets') }}/images/dashboard/user3.jpg" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Erica Hughes</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('admin_assets') }}/images/dashboard/man.png" alt="">
-                                    <div class="status-circle offline"></div>
-                                    <div class="about">
-                                        <div class="name">Ginger Johnston</div>
-                                        <div class="status"> 2 minutes ago</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('admin_assets') }}/images/dashboard/user5.jpg" alt="">
-                                    <div class="status-circle away"></div>
-                                    <div class="about">
-                                        <div class="name">Prasanth Anand</div>
-                                        <div class="status"> 2 hour ago</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('admin_assets') }}/images/dashboard/designer.jpg" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Hileri Jecno</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
+                                @foreach($users_data as $data)
+                                    <li class="clearfix"><img class="rounded-circle user-image blur-up lazyloaded" src="{{ asset('uploads') }}/profile_pic/{{$data->profile_pic}}" alt="">
+                                        <div class="status-circle online"></div>
+                                        <div class="about">
+                                            <div class="name">{{$data->name}}</div>
+                                            @if($data->activation_status == "online")
+                                                <span class="text-success">Online</span>
+                                            @else
+                                                <span class="text-secondary">Offline</span>
+                                            @endif
+                                            <div class="status">{{  \Carbon\Carbon::parse($data->activation_time)->diffForHumans()}}</div>
+                                        </div>
+                                    </li>
+                                @endforeach    
+                                
                             </ul>
                         </div>
                     </div>
@@ -342,33 +334,27 @@
         </footer>
         <!-- footer end-->
     </div>
-
 </div>
-<script src="https://parsleyjs.org/dist/parsley.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
-<script src="Https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>  
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script> -->
-<!-- latest jquery-->
-<script src="{{ asset('admin_assets') }}/js/jquery-3.3.1.min.js"></script>
+<script src="https://parsleyjs.org/dist/parsley.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" ></script> 
+<script src="{{ asset('admin_assets') }}/js/custom.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  -->
+
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.17/sweetalert2.all.min.js"></script> 
+
+
 
 <!-- Bootstrap js-->
 <script src="{{ asset('admin_assets') }}/js/bootstrap.js"></script>
 <script src="{{ asset('admin_assets') }}/js/bootstrap.min.js"></script>
-<script src="{{ asset('admin_assets') }}/js/sweetalert.min.js"></script>
+
 <!-- feather icon js-->
 <script src="{{ asset('admin_assets') }}/js/icons/feather-icon/feather.min.js"></script>
 <script src="{{ asset('admin_assets') }}/js/icons/feather-icon/feather-icon.js"></script>
@@ -387,8 +373,235 @@
 
 <!--script admin-->
 <script src="{{ asset('admin_assets') }}/js/admin-script.js"></script>
+@yield('page-script')
+<!-- deleting Category -->
+<script type="text/javascript">
+    $(document).on('click', '.delete', function (e) {
+        e.preventDefault();
+        
+        var id = $(this).data('id');
+        var type = $("#type").val();
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('admin.category.delete')}}",
+                    data: {id:id,type:type},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success: function (data) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Data Deleted Successfully!',
+                            'success'
+                            )
+                    }         
+                });
+                
+                
+            }
+            location.reload();
+        });
+        
+    });
+        
+</script>
 
+<!-- logout -->
+<script type="text/javascript">
+    
+    $(document).on('click','#logout_user',function(){
+       
+        var id = $(this).data('id');
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('admin.logout')}}",
+                    data: {id:id},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success: function (data) {
+                        location.reload();
+                    }         
+                });
+            }
+        });        
+    });
+            
+</script>
+<script>   
+    $(document).ready(function(){
+        var form = $('#form'),
+            original = form.serialize()
+
+        form.submit(function(){
+            window.onbeforeunload = null
+        })
+
+        window.onbeforeunload = function(){
+            if (form.serialize() != original)
+                return 'Are you sure you want to leave?'
+        }
+
+    });    
+    //get sub category with type
+    $(document).on('change','#parent_category',function(){
+        
+      var category_name = $('#parent_category').val();
+        
+        $.ajax({
+            url : "{{ url('getcategories') }}/"+category_name,
+            type : "get",
+            data : { category_name:category_name },
+                success:function(data){
+                $('#category').empty().append(data);
+            }
+        });
+    });
+    //get sub categories 
+    $(document).on('change','#category',function(){
+        
+        var id = $('#category').val();
+        
+          $.ajax({
+              url : "{{ url('getsubcategories') }}/"+id,
+              type : "get",
+              data : { id:id },
+                  success:function(data){
+                  $('#sub_category').empty().append(data);
+              }
+          });
+    });
+    //Reset Form
+   $('#configreset').click(function(){
+         $('#configform')[0].reset();
+   });
+
+   $(document).ready(function(){
+        
+        $('.js-example-basic-multiple').select2();
+        $('#phone_number').inputmask('(999)-9999-999');
+        $('#nic_number').inputmask('(99999)-9999999-9');
+        
+    });
+</script>
+<!-- get countries -->
+<script type=text/javascript>
+  
+  $('#country').change(function(){
+  var countryID = $(this).val();  
+   
+  if(countryID){
+    $.ajax({
+      type:"GET",
+      url:"{{url('get-state-list')}}?country_id="+countryID,
+      success:function(res){        
+      if(res){
+        $("#state").empty();
+        $("#state").append('<option>Select State</option>');
+        $.each(res,function(key,value){
+          $("#state").append('<option value="'+key+'">'+value+'</option>');
+        });
+      
+      }else{
+        $("#state").empty();
+      }
+      }
+    });
+  }else{
+    $("#state").empty();
+    $("#city").empty();
+  }   
+  });
+  $('#state').on('change',function(){
+  var stateID = $(this).val();  
+  if(stateID){
+    $.ajax({
+      type:"GET",
+      url:"{{url('get-city-list')}}?state_id="+stateID,
+      success:function(res){        
+      if(res){
+        $("#city").empty();
+        $.each(res,function(key,value){
+          $("#city").append('<option value="'+key+'">'+value+'</option>');
+        });
+      
+      }else{
+        $("#city").empty().append('<option>No City Selected</option>');
+      }
+      }
+    });
+  }else{
+    $("#city").empty();
+  }
+    
+  });
+
+    $(function(){
+
+    @if(Session::has('success'))
+        Swal.fire({
+        icon: 'success',
+        title: 'Great!',
+        text: '{{ Session::get("success") }}'
+    })
+    @endif
+    });
+
+    $(function(){
+
+    @if(Session::has('info'))
+    Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: '{{ Session::get("info") }}'
+    })
+    @endif
+    });
+
+    $(function(){
+
+    @if(Session::has('warning'))
+    Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: '{{ Session::get("warning") }}'
+    })
+    @endif
+    });
+
+    $(function(){
+
+    @if(Session::has('error'))
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{ Session::get("error") }}'
+    })
+    @endif
+    });
+</script>
 </body>
 
 <!-- Mirrored from themes.pixelstrap.com/multikart/back-end/create-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Jan 2021 20:23:09 GMT -->
 </html>
+  

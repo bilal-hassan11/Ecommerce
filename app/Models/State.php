@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 Class State extends Model
 {   
-    public function country()
-    {
-        return $this->belongsTo('App\Models\Country');
-    }
+    use HasFactory;
+
+    protected $table = 'states';
 }

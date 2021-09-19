@@ -180,6 +180,11 @@
                 </div>
             </div>
             <!-- Container-fluid Ends-->
-
+</div>
         </div>
+@endsection
+
+@section('page-script')
+
+
 @endsection

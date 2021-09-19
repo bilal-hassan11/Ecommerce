@@ -6,6 +6,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Multikart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Multikart admin template, dashboard template, flat admin template, responsive admin template, web app">
@@ -124,8 +125,8 @@
                             <li><a href="#"><i data-feather="mail"></i>Inbox</a></li>
                             <li><a href="#"><i data-feather="lock"></i>Lock Screen</a></li>
                             <li><a href="#"><i data-feather="settings"></i>Settings</a></li>
-                            <li><a href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i data-feather="log-out"></i>Logout</a>
-                                     <form action="{{ route('user.logout') }}" id="logout-form" method="post">@csrf</form></li>
+                            <li><a id="logout_user" data-id="{{Auth::user()->id}}"><i data-feather="log-out"></i>Logout</a>
+                                     
                         </ul>
                     </li>
                 </ul>
@@ -152,6 +153,7 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>Dashboard</span></a></li>
+                    
                     <li><a class="sidebar-header" href=""><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li>
@@ -178,6 +180,7 @@
                             </li>
                         </ul>
                     </li>
+                    
                     <li><a class="sidebar-header" href="order.show') }}"><i data-feather="dollar-sign"></i><span>Sales</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li><a href=""><i class="fa fa-circle"></i>Orders</a></li>
@@ -819,7 +822,38 @@
 
 <!--script admin-->
 <script src="{{ asset('admin_assets') }}/js/admin-script.js"></script>
-
+<!-- logout -->
+<script type="text/javascript">
+    
+    $(document).on('click','#logout_user',function(){
+       
+        var id = $(this).data('id');
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Logout it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('user.logout')}}",
+                    data: {id:id},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success: function (data) {
+                        location.reload();
+                    }         
+                });
+            }
+        });        
+    });
+            
+</script>
 </body>
 
 <!-- Mirrored from themes.pixelstrap.com/multikart/back-end/create-menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Jan 2021 20:23:09 GMT -->

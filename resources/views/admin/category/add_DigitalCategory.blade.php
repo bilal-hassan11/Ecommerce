@@ -42,13 +42,7 @@
 	    overflow-x: scroll;
 	}
 </style>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
+
 
 @section('content')
             <!-- Container-fluid starts-->
@@ -57,7 +51,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="page-header-left">
-                                <h3>Category
+                                <h3>Digital Category
                                     <small>Multikart Admin panel</small>
                                 </h3>
                             </div>
@@ -65,8 +59,8 @@
                         <div class="col-lg-6">
                             <ol class="breadcrumb pull-right">
                                 <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                                <li class="breadcrumb-item">Physical</li>
-                                <li class="breadcrumb-item active">Category</li>
+                                <li class="breadcrumb-item">Digital Category</li>
+                                <li class="breadcrumb-item active">Digital Category</li>
                             </ol>
                         </div>
                     </div>
@@ -80,7 +74,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Products Category</h5>
+                                <h5>Category</h5>
                             </div>
                             <div class="card-body">
                                 <div class="btn-popup pull-right">
@@ -89,25 +83,23 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Digital Product</h5>
+                                                    <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Digital Category</h5>
                                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form  method="Post" action="{{ route('admin.PhysicalCategory.save') }}" enctype="multipart/form-data">
+                                                <form  method="Post" action="{{ route('admin.Category.save') }}" enctype="multipart/form-data">
                                                         @Csrf
                                                         <div class="form">
                                                             <div class="form-group">
                                                                 <label  class="mb-1">Category Name :</label>
-                                                                <input class="form-control" name="category_name" type="text">
+                                                                <input class="form-control" name="name" type="text">
                                                             </div>
                                                             <div class="form-group mb-0">
                                                                 <label class="mb-1">Category Image :</label>
-                                                                <input class="form-control" name="category_image" type="File">
+                                                                <input class="form-control" name="logo" type="File">
                                                             </div>
-                                                            <div class="form-group mb-0 hide">
-                                                                <label class="mb-1">Category Type:</label>
-                                                                <input class="form-control" name="category_type" type="text" value="digital" >
-                                                            </div>
+                                                            <input class="form-control" id="type" name="category_type" readonly type="hidden" value="digital" >
+                                                            
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-primary" type="submit">Save</button>
@@ -121,9 +113,9 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <div id="basicScenario" class="product-physical">
+                                    <div id="basicScenario" >
                                     <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
-                                        <thead>
+                                    <thead>
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Image</th>
@@ -132,18 +124,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($DigitalCategories as $k => $category)
+                                            @forelse($DigitalCategories as $k => $category)
                                                 <tr>
                                                     <td>{{ $k + 1 }}</td>
-                                                    <td><img src="{{ asset('uploads') }}/physical_category/{{ $category->image }}" style="width:60px;" alt=""></td>
+                                                    <td><img src="{{ asset('uploads') }}/category/{{ $category->image }}" style="width:60px;" alt=""></td>
                                                     <td>{{ $category->name }}</td>
-                                                    <td> <a href=""><button type="button" style="color:red; border-radius:19px; width:90px; margin-top:15px;" class="btn btn-outline-danger">Delete</button></a>
+                                                    <td> 
+                                                        <a class="delete" data-id="{{$category->id}}"><button type="button" style="border-radius:30px;" class="btn btn-outline-info"><span><i class="far fa-trash-alt"></i></span></button></a>  
                                                         <a href=""><button type="button" style="color:yellow; border-radius:19px; width:90px; margin-top:15px;" class="btn btn-outline-info">Edit</button></a>
                                                     </td>
                                                 </tr>
-                                            @endforeach    
+                                            @empty
+                                                <tr>
+                                                    <td colspan="4"  >No Record Found</td>
+                                                </tr>
+                                            @endforelse   
                                         </tbody>
                                     </table>
+                                        <div class="mpag mt-2">
+                                            &nbsp<span>{{ $DigitalCategories->links() }}</span>&nbsp    
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -152,61 +152,7 @@
                 </div>
             </div>
             <!-- Container-fluid Ends-->
-
+        </div>
         </div>
 @endsection
 
-<script>
-
-$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        responsive: true
-    } );
- 
-    new $.fn.dataTable.FixedHeader( table );
-} );
-
-$(function(){
-
-    @if(Session::has('success'))
-        Swal.fire({
-        icon: 'success',
-        title: 'Great!',
-        text: '{{ Session::get("success") }}'
-    })
-    @endif
-});
-
-$(function(){
-
-    @if(Session::has('info'))
-    Swal.fire({
-        icon: 'info',
-        title: 'Oops...',
-        text: '{{ Session::get("info") }}'
-    })
-    @endif
-});
-
-$(function(){
-
-    @if(Session::has('warning'))
-    Swal.fire({
-        icon: 'warning',
-        title: 'Oops...',
-        text: '{{ Session::get("warning") }}'
-    })
-    @endif
-});
-
-$(function(){
-
-@if(Session::has('error'))
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: '{{ Session::get("error") }}'
-    })
-    @endif
-});
-</script>

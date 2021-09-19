@@ -400,15 +400,28 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            
                                             <td style="color:#42f5e6;">{{$data->skills}}</td>
                                             <td>
                                                 <div class="progress-showcase">
                                                     <div class="progress" style="height: 8px;">
-                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        @if($data->experience == "beginner")  
+                                                            <div class="progress-bar bg-primary" role="progressbar"  style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        @elseif($data->experience == "less than year")
+                                                            <div class="progress-bar bg-primary" role="progressbar"  style="width: 40%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        @elseif($data->experience == "One year")
+                                                            <div class="progress-bar bg-primary" role="progressbar"  style="width: 650%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        @elseif($data->experience == "two year")
+                                                            <div class="progress-bar bg-primary" role="progressbar"  style="width: 75%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        @elseif($data->experience == "three year")
+                                                            <div class="progress-bar bg-primary" role="progressbar"  style="width: 85%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        @else
+                                                        <div class="progress-bar bg-primary" role="progressbar"  style="width: 95%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="digits">{{$data->experience}}</td>
+                                            <td class="digits" id="experience" value="{{$data->experience}}">{{$data->experience}}</td>
                                         </tr>
                                         @endforeach
                                         </tbody>
@@ -424,7 +437,7 @@
             <!-- Container-fluid Ends-->
 
         </div>
-
+</div>
         
 @endsection
                             <!-- <tbody>

@@ -1,7 +1,8 @@
 <?php
 
-
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Admin\AdminUser;
+use App\Http\controllers\RolePermissionController;
 use App\Http\controllers\Admin\CouponController;
 use App\Http\controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\AdminController;
@@ -9,6 +10,7 @@ use App\Http\controllers\Admin\VendorController;
 use App\Http\controllers\Admin\MenuController;
 use App\Http\Controllers\CompanyController;
 use App\Http\controllers\HomeController;
+use App\Http\controllers\CountryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\Generalcategory;
 use App\Http\Controllers\RazorpayController;
@@ -28,23 +30,69 @@ use App\Http\Controllers\Frontend\FrontController;
 
 
 //get all Countries
-Route::get('/country',[CouponController::class, 'index'])->name('contact.show');
-Route::get('/getState',[CouponController::class, 'getState'])->name('getState');
-Route::get('/getCity',[CouponController::class, 'getCity'])->name('getCity');
-
-//get all categories
+Route::get('/country',[CountryController::class, 'index'])->name('country.show');
+Route::get('/get-state-list',[CountryController::class, 'getState'])->name('getState');
+Route::get('/get-city-list',[CountryController::class, 'getCity'])->name('getCity');
+//get categories
 Route::get('/getcategories/{category_name}',[CouponController::class, 'getcategories'])->name('getcategories');
-// Route::get('/getsubcategories/{category_name}',[CouponController::class, 'getsubcategories'])->name('getsubcategories');
+Route::get('/getsubcategories/{id}',[CategoryController::class, 'getsubcategory'])->name('getsubCategory');
+Route::get('/getroles/{guard_name}',[RolePermissionController::class, 'guard_roles'])->name('getroles');
+Route::get('/getpermission/{guard}',[RolePermissionController::class, 'guard_permissions'])->name('getpermission');
+Route::get('/permission/{role}',[RolePermissionController::class, 'get_permission'])->name('getpermission');
+
+// Route::get('lang/{locale}', 'LocalizationController@index');
+//Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LocalizationController@switchLang']);
+// Route::get('/{lang?}',function($lang = null){
+    
+//     App::setLocale($lang);
+//     return view('front_pages.home');
+// });
 
 
-Route::prefix('front')->name('front.')->group(function(){
-    Route::get('/home',[FrontController::class,'index'])->name('home');
+Route::prefix('front')->name('front.')->group(function(){  
+    
     Route::get('/login',[FrontController::class,'login'])->name('login');
     Route::get('/logout',[FrontController::class,'logout'])->name('logout');
     Route::get('/register',[FrontController::class,'register'])->name('register');
     Route::post('/create',[FrontController::class,'create'])->name('create');
 
 });
+
+//Import & Export file 
+Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
+Route::get('file-export', [UserController::class, 'fileExport'])->name('file-export');
+
+Route::get('/home',[FrontController::class,'index'])->name('home');
+Route::get('/Electronics',[FrontController::class,'electronics'])->name('electronics');
+Route::get('/Watches',[FrontController::class,'watches'])->name('watches');
+Route::get('/Clothes',[FrontController::class,'clothes'])->name('clothes');
+Route::get('/Nursery',[FrontController::class,'nursery'])->name('nursery');
+Route::get('/Bags',[FrontController::class,'bags'])->name('bags');
+Route::get('/Shoes',[FrontController::class,'shoes'])->name('shoes');
+Route::get('/Flower',[FrontController::class,'flower'])->name('flower');
+Route::get('/Vegetable',[FrontController::class,'vegetable'])->name('vegetable');
+Route::get('/Beauty',[FrontController::class,'beauty'])->name('beauty');
+Route::get('/Light',[FrontController::class,'light'])->name('light');
+Route::get('/Furniture',[FrontController::class,'furniture'])->name('furniture');
+Route::get('/goggle',[FrontController::class,'goggle'])->name('goggle');
+Route::get('/LookBook',[FrontController::class,'book'])->name('lookbook');
+Route::get('/Instagram',[FrontController::class,'instagram'])->name('instagram');
+Route::get('/Video',[FrontController::class,'video'])->name('video');
+Route::get('/Fullpage',[FrontController::class,'fullpage'])->name('fullpage');
+Route::get('/Parallax',[FrontController::class,'parallax'])->name('parallax');
+
+//pages
+Route::get('/Wishlist',[FrontController::class,'wishlist'])->name('wishlist');
+Route::get('/About us',[FrontController::class,'about'])->name('about_us');
+Route::get('/Search',[FrontController::class,'search'])->name('search');
+Route::get('/Typography',[FrontController::class,'typography'])->name('typography');
+Route::get('/Review',[FrontController::class,'review'])->name('review');
+Route::get('/Look',[FrontController::class,'look'])->name('look');
+Route::get('/Collection',[FrontController::class,'collection'])->name('collection');
+Route::get('/orderSuccess',[FrontController::class,'ordersuccess'])->name('ordersuccess');
+Route::get('/compingsoon',[FrontController::class,'comingsoon'])->name('comingsoon');
+
+
 
 Route::get('/',[UserController::class,'login'])->name('login');
 Auth::routes();
@@ -67,6 +115,13 @@ Route::prefix('user')->name('user.')->group(function(){
           
     });
 
+    //Products
+    Route::get('/add/product',[Product:: class, 'product'])->name('product.add');
+    Route::post('/save/product',[Product:: class, 'save_product'])->name('product.save');
+    Route::get('/all/product',[Product:: class, 'all_product'])->name('product.show');
+    Route::get('/update/product',[Product:: class, 'update_product'])->name('product.update');
+    Route::get('/delete/product',[Product:: class, 'delete_product'])->name('product.delete');
+
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -77,6 +132,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
+        
         Route::get('/home',[AdminController::class,'dashboard'])->name('home');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
         //Add user
@@ -87,43 +143,51 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/profile',[AdminUser:: class, 'profile'])->name('profile');
         Route::get('/serch',[AdminUser:: class, 'search'])->name('users.search');
 
+        //Add Role & Permission 
+        Route::get('/add/Role',[RolePermissionController:: class, 'index'])->name('add.role');
+        Route::post('/save/Role',[RolePermissionController:: class, 'create_role'])->name('save.role');
+        Route::get('/add/permission',[RolePermissionController:: class, 'permission'])->name('add.permission');
+        Route::post('/save/permission',[RolePermissionController:: class, 'create_permission'])->name('save.permission');
+        Route::get('/add/role_permission',[RolePermissionController:: class, 'role_permission'])->name('add.role_permission');
+        Route::post('/save/role_permission',[RolePermissionController:: class, 'assign_permission_to_role'])->name('save.role_permission');
+        
         //Add Companies
         Route::get('/add/Company',[CompanyController:: class, 'index'])->name('company.add');
-        Route::post('/all/Companies',[CompanyController:: class, 'all_Companies'])->name('Company.show');
+        Route::post('/all/Companies',[CompanyController:: class, 'all_Companies'])->name('company.show');
         Route::post('/Company/save',[CompanyController:: class, 'create'])->name('Company.save');
-        Route::get('/Company/update',[CompanyController:: class, 'index'])->name('Company.update');
+        Route::get('/Company/update',[CompanyController:: class, 'index'])->name('company.update');
         Route::get('/Company/search',[CompanyController:: class, 'search'])->name('company.search');
         //Route::get('/profile',[CompanyController:: class, 'profile'])->name('company.profile');
        
         //Add general category
-        Route::get('/add/Generalcategory',[Generalcategory:: class, 'index'])->name('company_category.add');
-        Route::post('/all/Generalcategory',[Generalcategory:: class, 'all_categories'])->name('company_category.show');
-        Route::post('/Generalcategory/save',[Generalcategory:: class, 'save'])->name('company_category.save');
-        Route::get('/Generalcategory/update',[Generalcategory:: class, 'index'])->name('company_category.update');
-        Route::get('/Generalcategory/search',[GeneralCategory:: class, 'search'])->name('company_category.search');
+        Route::get('/add/Companycategory',[Generalcategory:: class, 'index'])->name('company_category.add');
+        //Route::post('/all/Companycategory',[Generalcategory:: class, 'all_categories'])->name('company_category.show');
+        //Route::post('/Companycategory/save',[Generalcategory:: class, 'save'])->name('company_category.save');
+        Route::get('/Companycategory/update',[Generalcategory:: class, 'index'])->name('company_category.update');
+        Route::post('/Companycategory/delete',[GeneralCategory:: class, 'delete'])->name('Companycategory.delete');
+
+        //Products
+        Route::get('/add/product',[Product:: class, 'product'])->name('product.add');
+        Route::get('/product',[Product:: class, 'all_product'])->name('product.show');
+        Route::get('/update/product',[Product:: class, 'update_product'])->name('product.update');
+        Route::get('/delete/product',[Product:: class, 'delete_product'])->name('product.delete');
 
         //Menu
         Route::get('/add/menu',[MenuController:: class, 'menu'])->name('menu.add');
         Route::get('/all/menu',[MenuController:: class, 'all_menu'])->name('menu.show');
-        Route::get('/menu/save',[MenuController:: class, 'save_menu'])->name('menu.save');
+        Route::post('/menu/save',[MenuController:: class, 'save_menu'])->name('menu.save');
         Route::get('/menu/update',[MenuController:: class, 'menu'])->name('menu.update');
         Route::get('/menu/search',[MenuController:: class, 'search'])->name('menu.delete');
         
-        //Products
-        Route::get('/add/product',[Product:: class, 'product'])->name('product.add');
-        Route::post('/save/product',[Product:: class, 'save_product'])->name('product.save');
-        Route::get('/all/product',[Product:: class, 'all_product'])->name('product.show');
-        Route::get('/update/product',[Product:: class, 'update_product'])->name('product.update');
-        Route::get('/delete/product',[Product:: class, 'delete_product'])->name('product.delete');
         
         //General Product
-        Route::get('/all/general_product',[Product:: class, 'generalproduct'])->name('general_product.show');
+        Route::get('/general_product',[Product:: class, 'generalproduct'])->name('general_product.show');
         Route::post('/detail/general_product',[Product:: class, 'detail_general_product'])->name('general_product.detail');
         
         //Digital Product
         Route::get('/add/digital_product',[Product:: class, 'DigitalProduct'])->name('digital_product.add');
-        Route::post('/save/digital_product',[Product:: class, 'save_DigitalProduct'])->name('digital_product.save');
-        Route::get('/all/digital_product',[Product:: class, 'all_digital_product'])->name('digital_product.show');
+        Route::post('/save/product',[Product:: class, 'save_Product'])->name('product.save');
+        Route::get('/digital_product',[Product:: class, 'all_digital_product'])->name('digital_product.show');
         Route::get('/update/digital_product',[Product:: class, 'update_DigitalProduct'])->name('digital_product.update');
         Route::get('/delete/digital_product',[Product:: class, 'delete_DigitalProduct'])->name('digital_product.delete');
         
@@ -151,21 +215,22 @@ Route::prefix('admin')->name('admin.')->group(function(){
         
         //Physical category
         Route::get('/add/category',[CategoryController:: class, 'PhysicalCategory'])->name('PhysicalCategory.add');
-        Route::post('/category/save',[CategoryController:: class, 'save_PhysicalCategory'])->name('PhysicalCategory.save');
+        Route::post('/category/save',[CategoryController:: class, 'save_category'])->name('Category.save');
         Route::get('/category/update',[CategoryController:: class, 'update_category'])->name('category.update');
-        
+        Route::post('/category/delete',[CategoryController:: class, 'delete'])->name('category.delete');
+
         //Digital Sub Category
         Route::get('/add/sub_physical_category',[CategoryController:: class, 'Sub_PhysicalCategory'])->name('SubPhysicalCategory.add');
-        Route::post('/physical_category/save_physical_category',[CategoryController:: class, 'save_sub_PhysicalCategory'])->name('SubPhysicalCategory.save');
+        //Route::post('/physical_category/save_physical_category',[CategoryController:: class, 'save_sub_PhysicalCategory'])->name('SubPhysicalCategory.save');
 
         //Digital category
         Route::get('/add/digital_category',[CategoryController:: class, 'DigitalCategory'])->name('DigitalCategory.add');
-        Route::post('/digital_category/save_digital_category',[CategoryController:: class, 'save_digital_category'])->name('digital_category.save');
+        //Route::post('/digital_category/save_digital_category',[CategoryController:: class, 'save_digital_category'])->name('digital_category.save');
         //Route::get('/sub_category/update_sub_category',[Sub_CategoryController:: class, 'update'])->name('sub_category.update');
         
         //Digital Sub Category
         Route::get('/add/sub_digital_category',[CategoryController:: class, 'Sub_DigitalCategory'])->name('SubDigitalCategory.add');
-        Route::post('/digital_category/save_digital_category',[CategoryController:: class, 'save_sub_DigitalCategory'])->name('SubDigitalCategory.save');
+        Route::post('/subcategory/save',[CategoryController:: class, 'save_subCategory'])->name('SubCategory.save');
         //Route::get('/sub_category/update_sub_category',[Sub_CategoryController:: class, 'update'])->name('sub_category.update');
         
         //All Contacts
@@ -174,7 +239,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('/contact/delete',[ContactController:: class, 'delete_contact'])->name('contact.delete');
         
 
-        
 
     });
 

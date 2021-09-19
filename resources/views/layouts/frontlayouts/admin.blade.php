@@ -25,12 +25,12 @@ body {
     <link rel="icon" href="{{asset('front_assets')}}/images/favicon/1.png" type="image/x-icon" />
     <link rel="shortcut icon" href="{{asset('front_assets')}}/images/favicon/1.png" type="image/x-icon" />
     <title>Multikart - Multi-purpopse E-commerce Html Template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <!-- Icons -->
-    <link rel="stylesheet" type="text/css" href="{{asset('front_assets')}}/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!--Slick slider css-->
     <link rel="stylesheet" type="text/css" href="{{asset('front_assets')}}/css/slick.css">
@@ -496,41 +496,41 @@ body {
                                                 <li>
                                                     <a href="#">clothing</a>
                                                     <ul>
-                                                        <li><a target="_blank" href="index.html">fashion 1</a></li>
-                                                        <li><a target="_blank" href="fashion-2.html">fashion 2</a></li>
-                                                        <li><a target="_blank" href="fashion-3.html">fashion 3</a></li>
-                                                        <li><a target="_blank" href="kids.html">kids</a></li>
+                                                        <li><a  href="{{ route('clothes') }}">fashion 1</a></li>
+                                                        <li><a  href="fashion-2.html">fashion 2</a></li>
+                                                        <li><a  href="fashion-3.html">fashion 3</a></li>
+                                                        <li><a  href="kids.html">kids</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a target="_blank" href="watch.html">watch</a></li>
-                                                <li><a target="_blank" href="shoes.html">shoes</a></li>
+                                                <li><a  href="{{ route('watches')}}">watch</a></li>
+                                                <li><a  href="{{ route('shoes')}}">shoes</a></li>
                                                 <li>
-                                                    <a href="#">electronics</a>
+                                                    <a href="{{ route('electronics') }}">electronics</a>
                                                     <ul>
-                                                        <li><a target="_blank" href="electronic-1.html">electronic 1</a>
+                                                        <li><a  href="electronic-1.html">electronic 1</a>
                                                         </li>
-                                                        <li><a target="_blank" href="electronic-2.html">electronic 2</a>
+                                                        <li><a  href="electronic-2.html">electronic 2</a>
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li><a target="_blank" href="bags.html">bags</a></li>
-                                                <li><a target="_blank" href="nursery.html">nursery</a></li>
-                                                <li><a target="_blank" href="flower.html">flower</a></li>
-                                                <li><a target="_blank" href="vegetables.html">vegetable</a></li>
-                                                <li><a target="_blank" href="beauty.html">beauty</a></li>
-                                                <li><a target="_blank" href="light.html">light</a></li>
-                                                <li><a target="_blank" href="furniture.html">furniture</a></li>
-                                                <li><a target="_blank" href="goggles.html">googles</a></li>
+                                                <li><a  href="{{ route('bags') }}">bags</a></li>
+                                                <li><a  href="{{ route('nursery') }}">nursery</a></li>
+                                                <li><a  href="{{ route('flower') }}">flower</a></li>
+                                                <li><a  href="{{ route('vegetable') }}">vegetable</a></li>
+                                                <li><a  href="{{ route('beauty') }}">beauty</a></li>
+                                                <li><a  href="{{ route('light') }}">light</a></li>
+                                                <li><a  href="{{ route('furniture') }}">furniture</a></li>
+                                                <li><a  href="{{ route('goggle') }}">googles</a></li>
                                                 <li>
                                                     <a href="#">basics</a>
                                                     <ul>
-                                                        <li><a target="_blank" href="lookbook-demo.html">lookbook</a>
+                                                        <li><a  href="{{ route('lookbook') }}">lookbook</a>
                                                         </li>
-                                                        <li><a target="_blank" href="instagram-shop.html">instagram</a>
+                                                        <li><a  href="{{ route('instagram') }}">instagram</a>
                                                         </li>
-                                                        <li><a target="_blank" href="video.html">video</a></li>
-                                                        <li><a target="_blank" href="parallax.html">parallax</a></li>
-                                                        <li><a target="_blank" href="full-page.html">full page</a></li>
+                                                        <li><a  href="{{ route('video') }}">video</a></li>
+                                                        <li><a  href="{{ route('parallax') }}">parallax</a></li>
+                                                        <li><a  href="{{ route('fullpage') }}">full page</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -642,7 +642,7 @@ body {
                                                                                     <i class="fa fa-bolt icon-trend"
                                                                                         aria-hidden="true"></i></a></li>
                                                                             <li><a href="bags.html">cart top</a></li>
-                                                                            <li><a href="shoes.html">cart bottom</a>
+                                                                            <li><a href="{{ route('shoes') }}">cart bottom</a>
                                                                             </li>
                                                                             <li><a href="watch.html">cart left</a></li>
                                                                             <li><a href="tools.html">cart right</a></li>
@@ -735,7 +735,7 @@ body {
                                                 <li>
                                                     <a href="#">account</a>
                                                     <ul>
-                                                        <li><a href="wishlist.html">wishlist</a></li>
+                                                        <li><a href="{{ route('wishlist') }}">wishlist</a></li>
                                                         <li><a href="cart.html">cart</a></li>
                                                         <li><a href="dashboard.html">Dashboard</a></li>
                                                         <li><a href="login.html">login</a></li>
@@ -747,7 +747,7 @@ body {
                                                         <li><a href="checkout.html">checkout</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="about-page.html">about us</a></li>
+                                                <li><a href="{{ route('about_us') }}">about us</a></li>
                                                 <li><a href="search.html">search</a></li>
                                                 <li><a href="typography.html">typography <span
                                                             class="new-tag">new</span></a></li>
@@ -971,7 +971,7 @@ body {
                                     <ul>
                                         <li><a href="#">mens</a></li>
                                         <li><a href="#">womens</a></li>
-                                        <li><a href="#">clothing</a></li>
+                                        <li><a href="{{ route('clothes') }}">clothing</a></li>
                                         <li><a href="#">accessories</a></li>
                                         <li><a href="#">featured</a></li>
                                     </ul>
@@ -1316,7 +1316,7 @@ body {
                                 <div class="demo-text">
                                     <h4>Shoes</h4>
                                     <div class="btn-group demo-btn" role="group" aria-label="Basic example"> <button
-                                            type="button" onClick="window.open('shoes.html')"
+                                            type="button" onClick="window.open('{{ route('shoes') }}')"
                                             class="btn new-tab-btn">Preview</button></div>
                                 </div>
                             </div>
@@ -1979,9 +1979,6 @@ body {
     <!-- latest jquery-->
     <script src="{{asset('front_assets')}}/js/jquery-3.3.1.min.js"></script>
     
-    <!-- latest jquery-->
-    <script src="{{asset('front_assets')}}/js/bootstrap.bundle.min.js"></script>
-
     <!-- fly cart ui jquery-->
     <script src="{{asset('front_assets')}}/js/jquery-ui.min.js"></script>
 

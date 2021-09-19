@@ -36,4 +36,12 @@ class CompanyContact extends Controller
         
         return back(); 
     }
+
+    public function delete(Request $request)
+    {   
+       
+        Category::where('id',$request->id)->where('type','=',$request->type)->delete();
+        
+        return back()->reload(); 
+    }
 }

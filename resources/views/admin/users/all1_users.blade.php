@@ -83,3 +83,185 @@
 
 
 @endsection
+<div class="attribute-blocks">
+                                                        <h5 class="f-w-600 mb-3">Product Related permition </h5>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label>Add Product</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                                    <label class="d-block" for="edo-ani1">
+                                                                        <input class="radio_animated" id="edo-ani1" type="radio" name="rdo-ani">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block" for="edo-ani2">
+                                                                        <input class="radio_animated" id="edo-ani2" type="radio" name="rdo-ani" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label>Update Product</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                                    <label class="d-block" for="edo-ani3">
+                                                                        <input class="radio_animated" id="edo-ani3" type="radio" name="rdo-ani1">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block" for="edo-ani4">
+                                                                        <input class="radio_animated" id="edo-ani4" type="radio" name="rdo-ani1" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label>Delete Product</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                                    <label class="d-block" for="edo-ani5">
+                                                                        <input class="radio_animated" id="edo-ani5" type="radio" name="rdo-ani2">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block" for="edo-ani6">
+                                                                        <input class="radio_animated" id="edo-ani6" type="radio" name="rdo-ani2" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label class="mb-0 sm-label-radio">Apply discount</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated pb-0">
+                                                                    <label class="d-block mb-0" for="edo-ani7">
+                                                                        <input class="radio_animated" id="edo-ani7" type="radio" name="rdo-ani3">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block mb-0" for="edo-ani8">
+                                                                        <input class="radio_animated" id="edo-ani8" type="radio" name="rdo-ani3" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="attribute-blocks">
+                                                        <h5 class="f-w-600 mb-3">Category Related permition </h5>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label>Add Category</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                                    <label class="d-block" for="edo-ani9">
+                                                                        <input class="radio_animated" id="edo-ani9" type="radio" name="rdo-ani4">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block" for="edo-ani10">
+                                                                        <input class="radio_animated" id="edo-ani10" type="radio" name="rdo-ani4" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label>Update Category</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                                    <label class="d-block" for="edo-ani11">
+                                                                        <input class="radio_animated" id="edo-ani11" type="radio" name="rdo-ani5">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block" for="edo-ani12">
+                                                                        <input class="radio_animated" id="edo-ani12" type="radio" name="rdo-ani5" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label>Delete Category</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                                    <label class="d-block" for="edo-ani13">
+                                                                        <input class="radio_animated" id="edo-ani13" type="radio" name="rdo-ani6">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block" for="edo-ani14">
+                                                                        <input class="radio_animated" id="edo-ani14" type="radio" name="rdo-ani6" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-sm-4">
+                                                                <label class="mb-0 sm-label-radio">Apply discount</label>
+                                                            </div>
+                                                            <div class="col-xl-9 col-sm-8">
+                                                                <div class="form-group m-checkbox-inline custom-radio-ml d-flex radio-animated pb-0">
+                                                                    <label class="d-block mb-0" for="edo-ani15">
+                                                                        <input class="radio_animated" id="edo-ani15" type="radio" name="rdo-ani7">
+                                                                        Allow
+                                                                    </label>
+                                                                    <label class="d-block mb-0" for="edo-ani16">
+                                                                        <input class="radio_animated" id="edo-ani16" type="radio" name="rdo-ani7" checked="">
+                                                                        Deny
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+//Import csv
+
+step#1&2
+function csvToArray($filename = '', $delimiter = ',')
+{
+    if (!file_exists($filename) || !is_readable($filename))
+        return false;
+
+    $header = null;
+    $data = array();
+    if (($handle = fopen($filename, 'r')) !== false)
+    {
+        while (($row = fgetcsv($handle, 1000, $delimiter)) !== false)
+        {
+            if (!$header)
+                $header = $row;
+            else
+                $data[] = array_combine($header, $row);
+        }
+        fclose($handle);
+    }
+
+    return $data;
+}
+
+step#3
+public function importCsv()
+{
+    $file = public_path('file/test.csv');
+
+    $customerArr = $this->csvToArray($file);
+
+    for ($i = 0; $i < count($customerArr); $i ++)
+    {
+        User::firstOrCreate($customerArr[$i]);
+    }
+
+    return 'Jobi done or what ever';    
+}

@@ -33,7 +33,7 @@
                             <div class="card-body product-box">
                                 <div class="img-wrapper">
                                     <div class="front">
-                                        <a href="#"><img src="{{ asset('uploads') }}/digital_product/{{ $product->image }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                        <a href="#"><img src="{{ asset('uploads') }}/Product/{{ $product->image }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                                         <div class="product-hover">
                                             <ul>
                                                 <li>
@@ -65,8 +65,10 @@
                 </div>
             </div>
             <!-- Container-fluid Ends-->
-            &nbsp<span>{{ $Products->links() }}</span>&nbsp
+            <div class="mpag mt-2">
+                &nbsp<span>{{ $Products->links() }}</span>&nbsp
+            </div>
         </div>
 
-        
+</div>
 @endsection

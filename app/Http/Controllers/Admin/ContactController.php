@@ -13,6 +13,7 @@ class ContactController extends Controller
         
         $data = array(
             'title' => 'All Contacts',
+            'users_data' => User::get(),
             'contacts' => DB::table('contact')
                             ->join('companies', 'contact.sender_id', '=', 'companies.id')
                             ->select('contact.*', 'companies.title','companies.logo')

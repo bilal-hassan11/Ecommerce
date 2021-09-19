@@ -20,7 +20,7 @@ class CompanyController extends Controller
         $data = array(
             'title' => 'All Companies',
             'CompaniesCategory' => Category::where('type','=','general')->get(),
-            'companies' => Company::get(),
+            'companies' => Company::paginate(10),
         );
         
         //dd($data);
@@ -28,7 +28,9 @@ class CompanyController extends Controller
     } 
     //Company after login redirect to that function
     public function dashboard(){
-        
+        // session(['key' => 'value']);
+        // $id = Auth::user();
+        // dd($id);
         $data = array(
             'title' => 'All Companies',
             'employee'=> User::where('created_by','=',Auth::user()->id)->where('status','=','employee')->get(),
@@ -40,22 +42,25 @@ class CompanyController extends Controller
 
     function create(Request $request){
           
-        $validator = Validator::make($request->all(), [
-            'name'=>'required|min:5|max:30', 
-            'logo'=>'required',
-            'email'=>'required|email|unique:companies,email',
-            'category'=>'required',
-            'password'=>'required|min:5|max:30',
-            'c_password'=>'required|min:5|max:30|same:password',
-            'contact_no'=>'required|min:5|max:30',
-            'address'=>'required',     
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'name'=>'required|min:5|max:30', 
+        //     'logo'=>'required',
+        //     'email'=>'required|email|unique:companies,email',
+        //     'category'=>'required',
+        //     'password'=>'required|min:5|max:30',
+        //     'c_password'=>'required|min:5|max:30|same:password',
+        //     'contact_no'=>'required|min:5|max:30',
+        //     'address'=>'required',     
+        // ]);
 
-        if($validator->fails()) {
-            session()->flash("error", "You have to provide current Fields!");
-            //dd($validator);
-            return back();
-        }
+        // if($validator->fails()) {
+        //     return response()->json([
+        //         'error'=>"you have to provide current Fields!",
+
+        //     ]);
+        //     //dd($validator);
+        //     return back();
+        // }
             
         $imageName = time().'.'.$request->logo->extension();       
         $request->logo->move(public_path('uploads\company_logo'), $imageName);
@@ -93,9 +98,12 @@ class CompanyController extends Controller
             $company->save();
     
             session()->flash("success", "Company Added Successfully!");
+            
             return back();
+            
         }  
     }
+    
 
     function check(Request $request){
         //Validate Inputs

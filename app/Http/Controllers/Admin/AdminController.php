@@ -13,7 +13,8 @@ use App\Models\{Company,Products,user,Vendor,Message};
 class AdminController extends Controller
 {
     function check(Request $request){
-         //Validate Inputs
+        
+        //Validate Inputs
          $request->validate([
             'email'=>'required|email|exists:admins,email',
             'password'=>'required|min:5|max:30'
@@ -37,16 +38,16 @@ class AdminController extends Controller
             'products' => Products::get(),
             'users_data' => User::get(),
             'companies' => Company::get(),
-            'user'=>  DB::table('users')->orderBy('id','desc')->limit(10)->get(),
-            'vendors' => Vendor::get(),
+            'user'=>  DB::table('users')->orderBy('id','desc')->get(),
+            'vendors' => DB::table('users')->where('status','vendor')->get(),
             'contact' => Message::get()->count(),
         );
-        //dd($data);
         
         return view('admin.home')->with($data);
     }
 
-    function logout(){
+    public function logout(Request $request){
+    
         Auth::guard('admin')->logout();
         return redirect('/');
     }
