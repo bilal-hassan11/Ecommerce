@@ -193,10 +193,10 @@ c1.923,0,3.84-0.728,5.303-2.192l-83.142-83.142L393.695,417.909z"/>
                                 <div class="form-footer">
                                     <span>Or Login up with social platforms</span>
                                     <ul class="social">
-                                        <li><a class="icon-facebook" href="#"></a></li>
-                                        <li><a class="icon-twitter" href="#"></a></li>
-                                        <li><a class="icon-instagram" href="#"></a></li>
-                                        <li><a class="icon-pinterest" href="#"></a></li>
+                                        <li><a class="icon-facebook" href="{{ route('login.google')}}"></a></li>
+                                        <li><a class="icon-twitter" href="{{ route('login.facebook')}}"></a></li>
+                                        <li><a class="icon-instagram" href="{{ route('login.github')}}"></a></li>
+                                        <li><a class="icon-pinterest" href=""></a></li>
                                     </ul>
                                 </div>
                             </form>

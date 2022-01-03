@@ -28,6 +28,18 @@ use App\Http\Controllers\Company\CompanyContact;
 //Front Controller 
 use App\Http\Controllers\Frontend\FrontController;
 
+//LOGIN WITH GOOGLE
+Route::get('login/google',[App\Http\Controllers\Auth\LoginController::class,'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback',[App\Http\Controllers\Auth\LoginController::class,'handleProviderCallback']);
+
+//LOGIN WITH FACEBOOK
+Route::get('login/facebook',[App\Http\Controllers\Auth\LoginController::class,'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback',[App\Http\Controllers\Auth\LoginController::class,'handleProviderCallback']);
+
+//LOGIN WITH GITHUB
+Route::get('login/github',[App\Http\Controllers\Auth\LoginController::class,'redirectToGithub'])->name('login.github');
+Route::get('login/github/callback',[App\Http\Controllers\Auth\LoginController::class,'handleProviderCallback']);
+
 
 //get all Countries
 Route::get('/country',[CountryController::class, 'index'])->name('country.show');
@@ -41,7 +53,7 @@ Route::get('/getpermission/{guard}',[RolePermissionController::class, 'guard_per
 Route::get('/permission/{role}',[RolePermissionController::class, 'get_permission'])->name('getpermission');
 
 // Route::get('lang/{locale}', 'LocalizationController@index');
-//Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LocalizationController@switchLang']);
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LocalizationController@switchLang']);
 // Route::get('/{lang?}',function($lang = null){
     
 //     App::setLocale($lang);

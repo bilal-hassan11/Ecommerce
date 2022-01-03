@@ -9,6 +9,7 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Redirect;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -19,6 +20,13 @@ class CategoryController extends Controller
             'users_data' => User::get(),
             'PhysicalCategories' => category::where('type','physical')->where('name',"!=","")->where('deleted_at',Null)->paginate(10),
         );
+        //  $user = Auth::user()->id;
+        // // $t="test";
+        // // $t = $user->hasPermissionTo('add category', 'admin');
+        // $t = $user->hasAllRoles(Role::all());
+        // if($t){
+        //     return $t;
+        // }
         //Categry data for update
         // if(isset($request['category_id'])){
         //     $data['update'] = true;
@@ -247,27 +255,27 @@ class CategoryController extends Controller
 
     // }
 
-    public function getsubcategory($id){
-        
-        $category = DB::table("category")->where('id','=',$id)->get();
-        
-        $html = '';
+        public function getsubcategory($id){
             
-            $categories = DB::table("category")
-                            ->where("parent_category",$category[0]->name)
-                            ->where('type',$category[0]->type)
-                            ->where('name',Null)->get();
-           
-            if(count($categories)>0){
-                foreach($categories AS $category){
-                    $html .= '<option value="'.$category->sub_category.'">'.$category->sub_category.'</option>';
+            $category = DB::table("category")->where('id','=',$id)->get();
+            
+            $html = '';
+                
+                $categories = DB::table("category")
+                                ->where("parent_category",$category[0]->name)
+                                ->where('type',$category[0]->type)
+                                ->where('name',Null)->get();
+            
+                if(count($categories)>0){
+                    foreach($categories AS $category){
+                        $html .= '<option value="'.$category->sub_category.'">'.$category->sub_category.'</option>';
+                    }
+                    return $html;
+                }else{
+                    $html .= "<option value=''>No Sub categories</option>";
+                    return $html;
                 }
-                return $html;
-            }else{
-                $html .= "<option value=''>No Sub categories</option>";
-                return $html;
-            }
-    }
+        }
 
     public function delete(Request $request)
     {   
